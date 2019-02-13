@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/user/7/ludeaut/c++/TPi_ludeaut/src/Dvector.cxx
+iostream
+-
+Dvector.hxx
+/user/7/ludeaut/c++/TPi_ludeaut/src/Dvector.hxx
+
+/user/7/ludeaut/c++/TPi_ludeaut/src/Dvector.hxx
+iostream
+-
+

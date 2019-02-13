@@ -1,0 +1,1 @@
+/usr/bin/c++   -g -Wall    CMakeFiles/../src/Dvector_test.dir/src/Dvector.cxx.o  -o ../src/Dvector_test -rdynamic 
