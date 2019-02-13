@@ -2,6 +2,7 @@
 #include<fstream>
 #include<limits>
 #include<cstdio>
+#include<cstring>
 #include "Dvector.h"
 
 Dvector::Dvector()
@@ -54,6 +55,21 @@ Dvector::~Dvector()
   delete [] dVect;
 }
 
+Dvector& Dvector::operator=(const Dvector &d)
+{
+  sizeVect = d.sizeVect;
+  dVect = new double[sizeVect];
+  memcpy(dVect, d.dVect, sizeVect*sizeof(double));
+
+  return *this;
+}
+
+// Dvector& Dvector::operator=(Dvector &&d)
+// {
+//   // if()
+//   return *this;
+// }
+
 void Dvector::display(std::ostream& str)
 {
     for(int i = 0 ; i < sizeVect ; i++) str<<dVect[i]<<"\n";
@@ -66,7 +82,7 @@ int Dvector::size()
 
 double Dvector::element(const int &i)
 {
-    return dVect[i-1];
+    return dVect[i];
 }
 
 void Dvector::fillRandomly()
