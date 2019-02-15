@@ -8,10 +8,10 @@ int main()
   d.fillRandomly();
   d.display(std::cout);
   // Dvector x(3.1); // pas de pb
-  Dvector x; x = Dvector(3, 1.); //pb affiche 0 1 1
+  // Dvector x; x = Dvector(3, 1.); //pb affiche 0 1 1
   // par défaut sont en collision
-  // Dvector x = Dvector(3, 1.); // pas de pb
+  Dvector x = Dvector(3, 1.); // pas de pb
   x.display(std::cout);
-  Dvector y = Dvector("../../tp1_test1.txt");
-  // y.display();
+  Dvector y = Dvector("../tp1_test1.txt");
+  y.display(std::cout);
 }

@@ -19,7 +19,7 @@ class Dvector
     ~Dvector();
 
     Dvector& operator=(const Dvector &d);
-    // Dvector& operator=(Dvector &&d);
+    Dvector& operator=(Dvector &&d);
 
     void display(std::ostream& str);
     int size();
