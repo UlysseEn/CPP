@@ -1,5 +1,6 @@
 #include<iostream>
 #include<fstream>
+#include<iostream>
 #include<limits>
 #include<cstdio>
 #include<cstring>
@@ -33,7 +34,6 @@ Dvector::Dvector(std::string fichier)
   if(f)
   {
     std::string line("");
-    std::cout << "avant lecture\n";
     int lines = 0;
     while (std::getline(f, line))
     {
@@ -49,7 +49,6 @@ Dvector::Dvector(std::string fichier)
         dVect[i] = atof(line.c_str());
         i++;
     }
-    std::cout << "apres lecture\n";
   }
   else
   {
@@ -78,19 +77,163 @@ Dvector& Dvector::operator=(Dvector &&d)
   return *this;
 }
 
-void Dvector::display(std::ostream& str)
+Dvector& Dvector::operator+=(double nb)
 {
-    for(int i = 0 ; i < sizeVect ; i++) str<<dVect[i]<<"\n";
+  for(int i =0; i < sizeVect;i++) dVect[i] += nb;
+  return *this;
 }
 
-int Dvector::size()
+Dvector& Dvector::operator+=(const Dvector &d)
+{
+  try {
+    if(sizeVect != d.sizeVect) throw std::string("Addition impossible : Vecteurs de taille différente !\n");
+    for(int i =0; i < sizeVect;i++) dVect[i] += d.dVect[i];
+  } catch(std::string const& chaine)
+  {
+    std::cerr << chaine;
+  }
+  return *this;
+}
+
+Dvector& Dvector::operator-=(double nb)
+{
+  for(int i =0; i < sizeVect;i++) dVect[i] -= nb;
+  return *this;
+}
+
+Dvector& Dvector::operator-=(const Dvector &d)
+{
+  try {
+    if(sizeVect != d.sizeVect) throw std::string("Soustraction impossible : Vecteurs de taille différente !\n");
+    for(int i =0; i < sizeVect;i++) dVect[i] -= d.dVect[i];
+  } catch(std::string const& chaine)
+  {
+    std::cerr << chaine;
+  }
+  return *this;
+}
+
+Dvector& Dvector::operator*=(double nb)
+{
+  for(int i =0; i < sizeVect;i++) dVect[i] *= nb;
+  return *this;
+}
+
+Dvector& Dvector::operator*=(const Dvector &d)
+{
+  try {
+    if(sizeVect != d.sizeVect) throw std::string("Multiplication impossible : Vecteurs de taille différente !\n");
+    for(int i =0; i < sizeVect;i++) dVect[i] *= d.dVect[i];
+  } catch(std::string const& chaine)
+  {
+    std::cerr << chaine;
+  }
+  return *this;
+}
+
+Dvector& Dvector::operator/=(double nb)
+{
+  for(int i =0; i < sizeVect;i++) dVect[i] /= nb;
+  return *this;
+}
+
+Dvector& Dvector::operator/=(const Dvector &d)
+{
+  try {
+    if(sizeVect != d.sizeVect) throw std::string("Addition division : Vecteurs de taille différente !\n");
+    for(int i =0; i < sizeVect;i++) dVect[i] /= d.dVect[i];
+  } catch(std::string const& chaine)
+  {
+    std::cerr << chaine;
+  }
+  return *this;
+}
+
+bool Dvector::operator==(const Dvector &d)
+{
+  if(size() != d.size()) return false;
+  for(int i=0; i < size(); i++){
+    if(element(i) != d.element(i)) return false;
+  }
+  return true;
+}
+
+Dvector operator+(const Dvector &d, double nb)
+{
+  Dvector v(d);
+  v+=nb;
+  return v;
+}
+
+Dvector operator-(const Dvector &d, double nb)
+{
+  Dvector v(d);
+  v-=nb;
+  return v;
+}
+
+Dvector operator*(const Dvector &d, double nb)
+{
+  Dvector v(d);
+  v*=nb;
+  return v;
+}
+
+Dvector operator/(const Dvector &d, double nb)
+{
+  Dvector v(d);
+  v/=nb;
+  return v;
+}
+
+Dvector operator+(const Dvector &d, const Dvector &p)
+{
+  Dvector v(d);
+  v+=p;
+  return v;
+}
+
+Dvector operator-(const Dvector &d, const Dvector &p)
+{
+  Dvector v(d);
+  v-=p;
+  return v;
+}
+
+Dvector operator-(const Dvector &d)
+{
+  Dvector v(d.size());
+  for(int i =0; i < d.size();i++) v.element(i) = -d.element(i);
+  return v;
+}
+
+std::ostream &operator<<(std::ostream &out, const Dvector &d)
+{
+  out << "Dvector : ";
+  for(int i =0; i < d.size();i++) out << d.element(i) << " ";
+  out << "\n";
+  return out;
+}
+
+std::istream &operator>>(std::istream &in, const Dvector &d)
+{
+  for(int i =0; i < d.size();i++) in >> d.element(i);
+  return in;
+}
+
+int Dvector::size() const
 {
     return sizeVect;
 }
 
-double Dvector::element(const int &i)
+double &Dvector::element(const int &i) const
 {
     return dVect[i];
+}
+
+void Dvector::display(std::ostream& str)
+{
+    for(int i = 0 ; i < sizeVect ; i++) str<<dVect[i]<<"\n";
 }
 
 void Dvector::fillRandomly()

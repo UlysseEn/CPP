@@ -33,7 +33,6 @@ Dvector::Dvector(std::string fichier)
   if(f)
   {
     std::string line("");
-    std::cout << "avant lecture\n";
     int lines = 0;
     while (std::getline(f, line))
     {
@@ -49,7 +48,6 @@ Dvector::Dvector(std::string fichier)
         dVect[i] = atof(line.c_str());
         i++;
     }
-    std::cout << "apres lecture\n";
   }
   else
   {

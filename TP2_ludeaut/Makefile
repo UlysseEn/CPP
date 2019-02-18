@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -g -Wall -pedantic -fno-elide-constructors
+CXXFLAGS = -std=c++11 -g -Wall -pedantic -fno-elide-constructors
 LDFLAGS =
 EXECUTABLE = Dvector_test
 SOURCES = src/Dvector_test.cpp
