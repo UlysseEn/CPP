@@ -153,7 +153,7 @@ bool Dvector::operator==(const Dvector &d)
 {
   if(size() != d.size()) return false;
   for(int i=0; i < size(); i++){
-    if(element(i) != d.element(i)) return false;
+    if(dVect[i] != d(i)) return false;
   }
   return true;
 }
@@ -203,21 +203,21 @@ Dvector operator-(const Dvector &d, const Dvector &p)
 Dvector operator-(const Dvector &d)
 {
   Dvector v(d.size());
-  for(int i =0; i < d.size();i++) v.element(i) = -d.element(i);
+  for(int i =0; i < d.size();i++) v(i) = -d(i);
   return v;
 }
 
 std::ostream &operator<<(std::ostream &out, const Dvector &d)
 {
   out << "Dvector : ";
-  for(int i =0; i < d.size();i++) out << d.element(i) << " ";
+  for(int i =0; i < d.size();i++) out << d(i) << " ";
   out << "\n";
   return out;
 }
 
 std::istream &operator>>(std::istream &in, const Dvector &d)
 {
-  for(int i =0; i < d.size();i++) in >> d.element(i);
+  for(int i =0; i < d.size();i++) in >> d(i);
   return in;
 }
 
@@ -226,7 +226,12 @@ int Dvector::size() const
     return sizeVect;
 }
 
-double &Dvector::element(const int &i) const
+double &Dvector::operator()(const int &i)
+{
+    return dVect[i];
+}
+
+double Dvector::operator()(const int &i) const
 {
     return dVect[i];
 }
@@ -240,4 +245,18 @@ void Dvector::fillRandomly()
 {
     srand(time(NULL));
     for(int i = 0 ; i < sizeVect ; i++) dVect[i] = rand()/(double)RAND_MAX;
+}
+
+Dvector Dvector::resize(int s, double nb)
+{
+    if(s == size()) return *this;
+    Dvector d(s);
+    if(s < size()){
+      for(int i=0; i<s; i++) d(i) = dVect[i];
+    } else {
+      for(int i=0; i<size(); i++) d(i) = dVect[i];
+      for(int j=size(); j<s; j++) d(j) = nb;
+    }
+    *this = d;
+    return *this;
 }

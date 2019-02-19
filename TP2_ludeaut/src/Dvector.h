@@ -18,24 +18,27 @@ class Dvector
     Dvector(std::string str);
     ~Dvector();
 
-    Dvector& operator=(const Dvector &d);
-    Dvector& operator=(Dvector &&d);
+    double &operator()(const int &i);
+    double operator()(const int &i) const;
 
-    Dvector& operator+=(double nb);
-    Dvector& operator+=(const Dvector &d);
-    Dvector& operator-=(double nb);
-    Dvector& operator-=(const Dvector &d);
-    Dvector& operator*=(double nb);
-    Dvector& operator*=(const Dvector &d);
-    Dvector& operator/=(double nb);
-    Dvector& operator/=(const Dvector &d);
+    Dvector & operator=(const Dvector &d);
+    Dvector & operator=(Dvector &&d);
+
+    Dvector & operator+=(double nb);
+    Dvector & operator+=(const Dvector &d);
+    Dvector & operator-=(double nb);
+    Dvector & operator-=(const Dvector &d);
+    Dvector & operator*=(double nb);
+    Dvector & operator*=(const Dvector &d);
+    Dvector & operator/=(double nb);
+    Dvector & operator/=(const Dvector &d);
 
     bool operator==(const Dvector &d);
 
     void display(std::ostream& str);
     int size() const;
     void fillRandomly();
-    double &element(const int &i) const;
+    Dvector resize(int s, double nb);
 };
 
 Dvector operator+(const Dvector &d, double nb);

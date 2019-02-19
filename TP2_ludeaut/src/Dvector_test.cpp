@@ -7,11 +7,12 @@ int main()
   Dvector d = Dvector(3);
   d.fillRandomly();
   d.display(std::cout);
-  printf("%f\n", d.element(1));
+  printf("%f\n", d(1));
   // Dvector x(3.1); // pas de pb
   Dvector x; x = Dvector(3, 1.); //pas de pb
   // Dvector x = Dvector(3, 1.); // pas de pb
   x = x + 2.0;
+  x.resize(2, 6);
   x.display(std::cout);
   // std::cin>>x;
   std::cout<<x;
