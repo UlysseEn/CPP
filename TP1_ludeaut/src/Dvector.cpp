@@ -27,25 +27,31 @@ Dvector::Dvector(const Dvector &d)
 
 }
 
-Dvector::Dvector(std::string str)
+Dvector::Dvector(std::string fichier)
 {
-  std::ifstream f(str.c_str());
-  if(f) sizeVect = 0, dVect = new double[sizeVect];
-  else
+  std::ifstream f(fichier.c_str());
+  if(f)
   {
-    std::string line;
-    std::cout << "avant lecture\n";
-    // int lines;
-    // while ( f.ignore( std::numeric_limits<int>::max(), '\n' ) )
-    // {
-    //   ++lines;
-    // }
-    // std::cout << lines;
+    std::string line("");
+    int lines = 0;
+    while (std::getline(f, line))
+    {
+      ++lines;
+    }
+    sizeVect = lines;
+    f.close();
+    std::ifstream f(fichier.c_str());
+    int i = 0;
+    dVect = new double[sizeVect];
     while(std::getline(f, line))
     {
-        std::cout << line << std::endl;
+        dVect[i] = atof(line.c_str());
+        i++;
     }
-    std::cout << "apres lecture\n";
+  }
+  else
+  {
+    sizeVect = 0, dVect = new double[sizeVect];
   }
 }
 
