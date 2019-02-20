@@ -12,7 +12,7 @@ int main()
   Dvector x; x = Dvector(3, 1.); //pas de pb
   // Dvector x = Dvector(3, 1.); // pas de pb
   x = x + 2.0;
-  x.resize(2, 6);
+  x.resize(5, 6);
   x.display(std::cout);
   // std::cin>>x;
   std::cout<<x;

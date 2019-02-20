@@ -9,6 +9,7 @@
 Dvector::Dvector()
 {
   sizeVect = 0;
+  dVect = new double[sizeVect];
   return ;
 }
 
